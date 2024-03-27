@@ -182,8 +182,10 @@ cant_remove_dialog = define_new_dialog('cant_remove_inherited_dialog', 'Security
 cant_remove_dialog.html(`
 <div id="cant_remove_text">
     You can't remove <span id="cant_remove_username_1" class = "cant_remove_username"></span> because this object is inheriting permissions from 
-    its parent. To remove <span id="cant_remove_username_2" class = "cant_remove_username"></span>, you must prevent this object from inheriting permissions.
-    Turn off the option for inheriting permissions, and then try removing <span id="cant_remove_username_3" class = "cant_remove_username"></span>  again.
+    its parent. To remove <span id="cant_remove_username_2" class = "cant_remove_username"></span>, you must prevent this object from inheriting permissions. <br/><br/>
+    1) Click Advanced settings. <br/> 
+    2) Unclick "Include inheritable permissions from this object's parent" <br/>
+    3) Try removing <span id="cant_remove_username_3" class = "cant_remove_username"></span>  again.
 </div>`)
 
 // Make a confirmation "are you sure you want to remove?" dialog
@@ -340,7 +342,12 @@ function open_advanced_dialog(file_path) {
         $('#adv_perm_inheritance').prop('checked', false)
     }
 
-
+    // define get parent path function
+    function get_parent_path(file_path) {
+        const last_index = file_path.lastIndexOf('/');
+        const parent_path = file_path.substring(0, last_index);
+        return parent_path;
+    }
 
     // permissions list for permissions tab:
     let users = get_file_users(file_obj)
@@ -352,7 +359,7 @@ function open_advanced_dialog(file_path) {
                     <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_type">${ace_type}</td>
                     <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_name">${u}</td>
                     <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_permission">${perm}</td>
-                    <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_type">${grouped_perms[ace_type][perm].inherited?"Parent Object":"(not inherited)"}</td>
+                    <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_type">${grouped_perms[ace_type][perm].inherited? get_parent_path(file_path) : "(not inherited)"}</td>
                 </tr>`)
             }
         }
@@ -457,10 +464,10 @@ $('#adv_perm_inheritance').change(function(){
     else {
         // has just been turned off - pop up dialog with add/remove/cancel
         $(`<div id="add_remove_cancel" title="Security">
-            Warning: if you proceed, inheritable permissions will no longer propagate to this object.<br/>
-            - Click Add to convert and add inherited parent permissions as explicit permissions on this object<br/>
-            - Click Remove to remove inherited parent permissions from this object<br/>
-            - Click Cancel if you do not want to modify inheritance settings at this time.<br/>
+            <strong>Warning:</strong> if you proceed, inheritable permissions will no longer propagate to this object. The permissions changes will apply to all users.<br/>
+            - <strong>Click Add</strong> to convert and add inherited parent permissions as explicit permissions on this object. All users will keep the same permissions but inheritance will be removed.<br/>
+            - <strong>Click Remove</strong> to remove inherited parent permissions from this object.<br/>
+            - <strong>Click Cancel</strong> if you do not want to modify inheritance settings at this time.<br/>
         </div>`).dialog({ // TODO: don't create this dialog on the fly
             modal: true,
             width: 400,
