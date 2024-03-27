@@ -16,8 +16,10 @@ perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
             click: function() {
                 open_advanced_dialog(perm_dialog.attr('filepath'));
             },
-            style: " top: -81px; right: -67px;  font-size: 0.9em; background-color: #027ffe; border : 1px solid #027ffe;color: white;" 
-        },
+            style: " top: -81px; right: -67px;  font-size: 0.9em; background-color: #027ffe; border : 1px solid #027ffe;color: white; " 
+       
+        }
+        ,
         {
             text: "OK",
             id: "perm-dialog-ok-button",
@@ -91,13 +93,16 @@ perm_remove_user_button.css({
 // Add hover effect for both buttons
 perm_add_user_select.find('button').hover(function() {
     
-    $(this).css("background-color", "#8fd98f"); // Light green on hover
+    $(this).css("background-color", "rgb(60 153 60)"); // Light green on hover
+   
 }, function() {
     $(this).css("background-color", "#6ebf6e"); // Restore original color on hover out
 });
 
 perm_remove_user_button.hover(function() {
-    $(this).css("background-color", "#fda6a5"); // Light red on hover
+    $(this).css("background-color", "rgb(201 62 61)"); // Light red on hover
+    
+   
 }, function() {
     $(this).css("background-color", "#f86c6b"); // Restore original color on hover out
 });
