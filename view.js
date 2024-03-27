@@ -1,5 +1,6 @@
 // ---- Define your dialogs  and panels here ----
-
+let result = define_new_effective_permissions(id_prefix= "epPanel", add_info_col = true, which_permissions = null)
+$('#perm_entry_table').append(result)
 
 
 // ---- Display file structure ----
