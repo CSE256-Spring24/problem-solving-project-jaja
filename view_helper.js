@@ -209,16 +209,24 @@ function define_new_effective_permissions(id_prefix, add_info_col = false, which
 function define_grouped_permission_checkboxes(id_prefix, which_groups = null) {
     // Set up table and header:
     let group_table = $(`
-    <table id="${id_prefix}" class="ui-widget-content" width="100%">
-        <tr id="${id_prefix}_header">
-            <th id="${id_prefix}_header_p" width="99%">Permissions for <span id="${id_prefix}_header_username"></span>
+    <table id="${id_prefix}" class="ui-widget-content" width="100%" style="position: relative;margin-bottom: 5%;padding-left:3%;padding-right:3%;">
+        <tr id="${id_prefix}_header"  style="background-color: #eee; position: absolute; top: -25%;  left:-1px; padding:1.1%;">
+            <th id="${id_prefix}_header_p" width="200%" style="text-align: left; font-weight: 600; font-size: 15px;">Permissions for <span id="${id_prefix}_header_username"></span>
             </th>
-            <th id="${id_prefix}_header_allow">Allow</th>
-            <th id="${id_prefix}_header_deny">Deny</th>
+            <th id="${id_prefix}_header_allow" style="font-size: 12px; font-weight: 300;position: relative;left: -5%;">Allow</th>
+            <th id="${id_prefix}_header_deny" style="font-size: 12px; font-weight: 300;position: relative;left: -4%;">Deny</th>
         </tr>
     </table>
-    `)
+`);
 
+
+
+
+
+
+// Get the parent container of the table and append the group_table to it
+let parentContainer = group_table.parent();
+parentContainer.prepend(group_table);
     if(which_groups === null) {
         which_groups = perm_groupnames
     }
