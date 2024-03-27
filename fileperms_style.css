@@ -36,3 +36,8 @@
 .no-close .ui-dialog-titlebar-close {
     display: none;
 }
+
+#filestructure {
+    margin-top: 10%;
+    margin-left: 25%;
+}
