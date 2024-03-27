@@ -7,32 +7,35 @@ show_starter_dialogs = false // set this to "false" to disable the survey and 3-
 // Make permissions dialog:
 perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
     // The following are standard jquery-ui options. See https://jqueryui.com/dialog/
-    height: 500,
-    width: 400,
-    buttons: {
-        OK:{
+    height: 580,
+    width: 500,
+    buttons: [
+        {
+            text: "Advanced",
+            id: "perm-dialog-advanced-button",
+            click: function() {
+                open_advanced_dialog(perm_dialog.attr('filepath'));
+            },
+            style: " top: -81px; right: -67px;  font-size: 0.9em; background-color: #027ffe; border : 1px solid #027ffe;color: white;" 
+        },
+        {
             text: "OK",
             id: "perm-dialog-ok-button",
             click: function() {
                 $( this ).dialog( "close" );
-            }
-        },
-        Advanced: {
-            text: "Advanced",
-            id: "perm-dialog-advanced-button",
-            click: function() {
-                open_advanced_dialog(perm_dialog.attr('filepath'))
-            }
+            },
+            
         }
-    }
-})
+    ]
+});
+
 
 // Make the initial "Object Name:" text:
 // If you pass in valid HTML to $(), it will *create* elements instead of selecting them. (You still have to append them, though)
-obj_name_div = $('<div id="permdialog_objname" class="section">Object Name: <span id="permdialog_objname_namespan"></span> </div>')
+obj_name_div = $('<div id="permdialog_objname" class="section">Object Path: <span id="permdialog_objname_namespan"></span> </div>')
 
 //Make the div with the explanation about special permissions/advanced settings:
-advanced_expl_div = $('<div id="permdialog_advanced_explantion_text">For special permissions or advanced settings, click Advanced.</div>')
+advanced_expl_div = $('<div id="permdialog_advanced_explantion_text" style="font-size: 12px;">For special permissions or advanced settings, click Advanced.</div>');
 
 // Make the (grouped) permission checkboxes table:
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')
@@ -43,12 +46,107 @@ file_permission_users = define_single_select_list('permdialog_file_user_list', f
     // when a new user is selected, change username attribute of grouped permissions:
     grouped_permissions.attr('username', selected_user)
 })
+//This is the top section of the permissions box
 file_permission_users.css({
-    'height':'80px',
+   
+    "border": "1px solid #eee",
+    'padding':'1%',
+    "margin-bottom": "10px" 
+    
 })
 
+
+
+
+
+$(document).ready(function() {
+    
+ 
+
+// Apply styles to the "Add user" button
+perm_add_user_select.find('button').css({
+    "border": "1px solid #6ebf6e",
+    "background-color": "#6ebf6e", // Light green color
+    "color": "#fff", // White text color
+    "padding": "5px 10px", // Padding for button size
+    "font-size": "0.7em", // Smaller font size
+    "cursor": "pointer", // Change cursor on hover
+    "float": "right", // Align button to the left
+    "margin-right": "5px", // Add margin between buttons
+    "margin-bottom": "50px" // Add margin underneath the buttons
+});
+
+// Apply styles to the "Remove user" button
+perm_remove_user_button.css({
+    "border": "1px solid #f86c6b",
+    "background-color": "#f86c6b", // Light red color
+    "color": "#fff", // White text color
+    "padding": "5px 10px", // Padding for button size
+    "font-size": "0.7em", // Smaller font size
+    "cursor": "pointer", // Change cursor on hover
+    "float": "right", // Align button to the right
+    "margin-bottom": "50px" // Add margin underneath the buttons
+});
+
+// Add hover effect for both buttons
+perm_add_user_select.find('button').hover(function() {
+    
+    $(this).css("background-color", "#8fd98f"); // Light green on hover
+}, function() {
+    $(this).css("background-color", "#6ebf6e"); // Restore original color on hover out
+});
+
+perm_remove_user_button.hover(function() {
+    $(this).css("background-color", "#fda6a5"); // Light red on hover
+}, function() {
+    $(this).css("background-color", "#f86c6b"); // Restore original color on hover out
+});
+
+
+
+
+
+
+   // Apply gray background to the "Group or user names:" section
+   $('#permissions_user_title').css({
+    "background-color": "#eee",
+    "padding":"1%",
+
+});
+
+
+    
+    $("#permdialog").css("padding", "20px"); // Adjust the padding value as needed
+
+    // Assuming the permissions dialog and its contents are already appended to the DOM
+    $("#permdialog").prev(".ui-dialog-titlebar").find(".ui-dialog-title").css({
+        "text-align": "center",
+        "width": "100%",
+        'font-size': '1.1em', 
+        'color': 'white', 
+        'font-weight':'300',
+    });
+    $("#permdialog").parent().find(".ui-dialog-titlebar").css("background-color", " #007fff","border:", "1px solid");
+
+    // Adjust the style of the 'Object Path:' text to move it to the right
+    $('#permdialog_objname').css({
+       'font-weight':'600',
+       
+        'text-align': 'left', // Ensures text alignment is as expected
+        'padding-right': '10px' // Adjusts padding if needed for alignment
+    });
+
+    // Specifically target the span for font size reduction and positioning
+    $('#permdialog_objname_namespan').css({
+        'font-weight':'400',
+        'display': 'inline-block', // This makes margin adjustments possible
+        'font-size': '1em', // Adjust the font size as needed
+        'margin-left': '10px', // Adds space to move the path to the right
+        'margin-bottom': '10px',
+    });
+});
 // Make button to add a new user to the list:
-perm_add_user_select = define_new_user_select_field('perm_add_user', 'Add...', on_user_change = function(selected_user){
+perm_add_user_select = define_new_user_select_field('perm_add_user', 'Add user', on_user_change = function(selected_user){
     // console.log("add...")
     let filepath = perm_dialog.attr('filepath')
     if(selected_user && (selected_user.length > 0) && (selected_user in all_users)) { // sanity check that a user is actually selected (and exists)
@@ -120,7 +218,7 @@ let are_you_sure_dialog = define_new_dialog('are_you_sure_dialog', "Are you sure
 are_you_sure_dialog.text('Do you want to remove permissions for this user?')
 
 // Make actual "remove" button:
-perm_remove_user_button  = $('<button id="perm_remove_user" class="ui-button ui-widget ui-corner-all">Remove</button>')
+perm_remove_user_button  = $('<button id="perm_remove_user" class="ui-button ui-widget ui-corner-all">Remove user</button>')
 perm_remove_user_button.click(function(){
     // Get the current user and filename we are working with:
     let selected_username = file_permission_users.attr('selected_item')
