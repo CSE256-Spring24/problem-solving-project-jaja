@@ -318,6 +318,7 @@ function open_permission_entry(file_path) {
     $('.perm_entry_checkcell').empty()
 
     $(`#permentry`).dialog('open')
+   
 }
 
 // populate and open the "advanced" dialog for a given file
@@ -367,10 +368,16 @@ function open_advanced_dialog(file_path) {
 
     // user list for owner tab:
     let all_user_list = make_all_users_list('adv_owner_','adv_owner_current_owner') 
+    let effective_user_list = make_all_users_list('eff_owner_','eff_owner_current_owner')
+    let perm_entry_user_list = make_all_users_list('perm_entry_owner_','perm_entry_owner_current_owner')
 
     $('#adv_owner_current_owner').text(get_user_name(file_obj.owner))
+    $('#eff_owner_current_owner').text(get_user_name(file_obj.owner))
+    $('#perm_entry_owner_current_owner').text(get_user_name(file_obj.owner))
 
     $('#adv_owner_user_list').append(all_user_list)
+    $('#eff_owner_user_list').append(effective_user_list)
+    $('#perm_entry_owner_user_list').append(effective_user_list)
 
     // open dialog:
     $(`#advdialog`).dialog('open')
@@ -632,15 +639,27 @@ let perm_entry_dialog = $('#permentry').dialog({
     }
 })
 
-for(let p of Object.values(permissions)){
+// for(let p of Object.values(permissions)){
+//     let row = $(`<tr id="perm_entry_row_${p}">
+//         <td id="perm_entry_row_${p}_cell">${p}</td>
+//     </tr>`)
+//     for(let ace_type of ['allow', 'deny']) {
+//         row.append(`<td id="perm_entry_row_${p}_${ace_type}" class="perm_entry_checkcell" perm="${p}" type="${ace_type}"></td>`)
+//     }
+//     $('#perm_entry_table').append(row)
+// }  
+for (let p of Object.values(permissions)) {
     let row = $(`<tr id="perm_entry_row_${p}">
         <td id="perm_entry_row_${p}_cell">${p}</td>
     </tr>`)
-    for(let ace_type of ['allow', 'deny']) {
-        row.append(`<td id="perm_entry_row_${p}_${ace_type}" class="perm_entry_checkcell" perm="${p}" type="${ace_type}"></td>`)
+    for (let ace_type of ['allow', 'deny']) {
+        row.append(`
+            <td id="perm_entry_row_${p}_${ace_type}" class="perm_entry_checkcell" perm="${p}" type="${ace_type}">
+                <span class="info-icon" title="Information"></span> <!-- Information icon -->
+            </td>`)
     }
     $('#perm_entry_table').append(row)
-}  
+}
 
 $('#adv_perm_edit').click(function(){
     let filepath = $('#advdialog').attr('filepath')
