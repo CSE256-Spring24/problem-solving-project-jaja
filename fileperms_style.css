@@ -41,3 +41,25 @@
     margin-top: 10%;
     margin-left: 25%;
 }
+
+#adv-inheritance-add-button {
+    border: 1px solid #6ebf6e;
+    background-color: #6ebf6e;
+    color: #fff;
+    cursor: pointer;
+}
+
+#adv-inheritance-remove-button {
+    border: 1px solid #f86c6b;
+    background-color: #f86c6b;
+    color: #fff;
+    cursor: pointer;
+}
+
+#adv_perm_object_name {
+    margin-bottom: 15px;
+}
+
+#adv_perm_edit {
+    margin-bottom: 15px;
+}
