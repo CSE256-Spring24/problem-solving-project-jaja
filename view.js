@@ -1,6 +1,15 @@
 // ---- Define your dialogs  and panels here ----
 
+// $(document).ready(function() {
+//     $("#ui-id-27").dialog({
+//       width: 700
+//     });
+//   });
 
+
+$("#ui-id-27").dialog({
+    width: 700
+  });
 
 // ---- Display file structure ----
 

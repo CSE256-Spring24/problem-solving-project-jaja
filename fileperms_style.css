@@ -62,6 +62,9 @@
 
 #adv_perm_edit {
     margin-bottom: 15px;
+    background-color: #007fff;
+    color:#fff;
+    border: 1px solid #003eff;
 }
 
 .legend {
@@ -85,4 +88,13 @@
     line-height: 1.5em;
     border: 1px solid #dddddd;
 
+}
+
+#permdialog_grouped_permissions {
+    line-height: 1.3em;
+    padding: 5px;
+}
+
+#permdialog_file_user_employees, #permdialog_file_user_employee1, #permdialog_file_user_employee2, #permdialog_file_user_employee3, #permdialog_file_user_employee4, #permdialog_file_user_administrator, #permdialog_file_user_new_manager, #permdialog_file_user_intern, #permdialog_file_user_professor, #permdialog_file_user_students, #permdialog_file_user_teaching_assistant {
+    padding: 5px;
 }
