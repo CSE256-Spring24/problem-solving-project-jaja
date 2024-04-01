@@ -38,6 +38,75 @@
 }
 
 #filestructure {
-    margin-top: 10%;
+    margin-top: 3%;
     margin-left: 25%;
 }
+
+#adv-inheritance-add-button {
+    border: 1px solid #6ebf6e;
+    background-color: #6ebf6e;
+    color: #fff;
+    cursor: pointer;
+}
+
+#adv-inheritance-remove-button {
+    border: 1px solid #f86c6b;
+    background-color: #f86c6b;
+    color: #fff;
+    cursor: pointer;
+}
+
+#adv_perm_object_name {
+    margin-bottom: 15px;
+}
+
+#adv_perm_edit {
+    margin-bottom: 15px;
+    background-color: #007fff;
+    color:#fff;
+    border: 1px solid #003eff;
+}
+
+.legend {
+    width: 25%;
+    margin-top: 4%;
+    margin-left: 25%;
+    color: #333333;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 1em;
+}
+
+.legend #top {
+    background-color: rgb(238, 238, 238);
+    padding: 3%;
+    border: 1px solid #dddddd;
+
+}
+
+.legend #contents {
+    padding: 3%;
+    line-height: 1.5em;
+    border: 1px solid #dddddd;
+
+}
+
+#permdialog_grouped_permissions {
+    line-height: 1.3em;
+    padding: 5px;
+}
+
+#permdialog_file_user_employees, #permdialog_file_user_employee1, #permdialog_file_user_employee2, #permdialog_file_user_employee3, #permdialog_file_user_employee4, #permdialog_file_user_administrator, #permdialog_file_user_new_manager, #permdialog_file_user_intern, #permdialog_file_user_professor, #permdialog_file_user_students, #permdialog_file_user_teaching_assistant {
+    padding: 5px;
+}
+
+#user_select_employees, #user_select_employee1, #user_select_employee2, #user_select_employee3, #user_select_employee4, #user_select_administrator, #user_select_new_manager, #user_select_intern, #user_select_professor, #user_select_students, #user_select_teaching_assistant {
+    padding: 5px;
+}
+
+/* #adv_owner__employees, #adv_owner__employee1, #adv_owner__employee2, #adv_owner__employee3, #adv_owner__employee4, #adv_owner__administrator, #adv_owner__new_manager, #adv_owner__intern, #adv_owner__professor, #adv_owner__students, #adv_owner__teaching_assistant, #adv_owner_current_owner, #adv_owner_current_owner_text, #adv_owner_explanation, #adv_owner_object_name {
+    padding: 5px;
+}
+
+#adv_owner__all_users {
+    height: 100px;
+} */

@@ -1,4 +1,5 @@
 // ---- Define your dialogs  and panels here ----
+
 let result = define_new_effective_permissions(id_prefix= "epPanel", add_info_col = true, which_permissions = null)
 $('#perm_entry_table').append(result)
 let eff_perm_result = define_new_effective_permissions(id_prefix= "epPanel-eff-perm", add_info_col = true, which_permissions = null)
@@ -19,6 +20,30 @@ $('.perm_info').click(function(){
 //    $('#newDialogue').append(explanation)
 //    $('#newDialogue').empty()
 })
+
+$("#permdialog").dialog({
+    minWidth: 675
+  });
+  
+  $("#permdialog").dialog({
+    minHeight: 650
+  });
+
+  $("#permdialog").dialog({
+    position: { my: "center center", at: "center center", of: window }
+  });
+
+
+
+  var minWidth = $( "#permdialog" ).dialog( "option", "minWidth" );
+$( "#permdialog" ).dialog( "option", "minWidth", 675 );
+
+  var minHeight = $( "#permdialog" ).dialog( "option", "minHeight" );
+  $( "#permdialog" ).dialog( "option", "minHeight", 650 );
+
+  var position = $( "#permdialog" ).dialog( "option", "position" );
+$( ".selector" ).dialog( "option", "position", { my: "center center", at: "center center", of: window } );
+
 
 // ---- Display file structure ----
 

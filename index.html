@@ -82,6 +82,16 @@
                 </span>
             </span>
         </div>
+        <div class="legend">
+            <div id="top">Legend</div>
+            <div id="contents">
+                <span class="oi oi-folder" id="/C_icon"></span><span> Folder</span> <br>
+                <span class="oi oi-file" id="/C/presentation_documents/important_file.txt_icon"></span> <span> File</span> <br>
+                <span id="permdialog_file_user_employee1_icon" class="oi oi-person"></span> <span> User</span> <br>
+                <span id="permdialog_file_user_employees_icon" class="oi oi-people ui-selectee"></span> <span> Group</span> <br>
+                <span class="oi oi-lock-unlocked" id="/C/presentation_documents_permicon"></span> <span> Permissions</span> <br>
+            </div>
+        </div>
         <div id="wrapper">
             <div data-app="gender-mag" data-mode="tracker" id="html-loc" data-tag="">
                 <!-- div where file and folder structure will be generated:-->
@@ -137,11 +147,10 @@
                                     </tr>
                                 </table>
                             </div>
-                            <button id="adv_perm_edit" class="ui-button ui-widget ui-corner-all">Edit...</button>
+                            <button id="adv_perm_edit" class="ui-button ui-widget ui-corner-all">Edit Permissions</button>
                             <div id="adv_perm_inheritance_div">
                                 <input type="checkbox" id="adv_perm_inheritance" name="inherit">
-                                <label for="adv_perm_inheritance" id="adv_perm_inheritance_label">Include inheritable
-                                    permissions from this object's parent</label>
+                                <label for="adv_perm_inheritance" id="adv_perm_inheritance_label">Enable inherited permissions from parent object</label>
                             </div>
                             <div id="adv_perm_replace_child_div">
                                 <input type="checkbox" id="adv_perm_replace_child_permissions" name="replace_child">

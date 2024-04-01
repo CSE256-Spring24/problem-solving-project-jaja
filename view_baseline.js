@@ -184,7 +184,7 @@ cant_remove_dialog.html(`
     You can't remove <span id="cant_remove_username_1" class = "cant_remove_username"></span> because this object is inheriting permissions from 
     its parent. To remove <span id="cant_remove_username_2" class = "cant_remove_username"></span>, you must prevent this object from inheriting permissions. <br/><br/>
     1) Click Advanced settings. <br/> 
-    2) Unclick "Include inheritable permissions from this object's parent" <br/>
+    2) Unclick "Enable inherited permissions from parent object" <br/>
     3) Try removing <span id="cant_remove_username_3" class = "cant_remove_username"></span>  again.
 </div>`)
 
@@ -474,8 +474,8 @@ $('#adv_perm_inheritance').change(function(){
         // has just been turned off - pop up dialog with add/remove/cancel
         $(`<div id="add_remove_cancel" title="Security">
             <strong>Warning:</strong> if you proceed, inheritable permissions will no longer propagate to this object. The permissions changes will apply to all users.<br/>
-            - <strong>Click Add</strong> to convert and add inherited parent permissions as explicit permissions on this object. All users will keep the same permissions but inheritance will be removed.<br/>
-            - <strong>Click Remove</strong> to remove inherited parent permissions from this object.<br/>
+            - <strong>Click Convert</strong> to convert and add inherited parent permissions as explicit permissions on this object. <u>All users will keep the same permissions but inheritance will be removed.</u><br/>
+            - <strong>Click Disable</strong> to disable inherited parent permissions for this object for all users.<br/>
             - <strong>Click Cancel</strong> if you do not want to modify inheritance settings at this time.<br/>
         </div>`).dialog({ // TODO: don't create this dialog on the fly
             modal: true,
@@ -484,7 +484,7 @@ $('#adv_perm_inheritance').change(function(){
             position: { my: "top", at: "top", of: $('#html-loc') },
             buttons: {
                 Add: {
-                    text: "Add",
+                    text: "Convert",
                     id: "adv-inheritance-add-button",
                     click: function() {
                         let filepath = $('#advdialog').attr('filepath')
@@ -496,7 +496,7 @@ $('#adv_perm_inheritance').change(function(){
                     },
                 },
                 Remove: {
-                    text: "Remove",
+                    text: "Disable",
                     id: "adv-inheritance-remove-button",
                     click: function() {
                         let filepath = $('#advdialog').attr('filepath')
@@ -529,7 +529,7 @@ $('#adv_perm_replace_child_permissions').change(function(){
         let filepath = $('#advdialog').attr('filepath')
         let file_obj = path_to_file[filepath]
         $(`<div id="replace_perm_dialog" title="Security">
-            This will replace explicitly defined permissions on all descendants of this object with inheritable permissions from ${file_obj.filename}.<br/>
+            This will replace explicitly defined permissions on all descendants of the current object, ${file_obj.filename}, with its inheritable permissions.<br/>
             Do you wish to continue?
         </div>`).dialog({
             modal: true,
