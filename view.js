@@ -8,11 +8,21 @@ $("#permdialog").dialog({
     minHeight: 650
   });
 
+  $( "#permdialog" ).dialog({
+    position: { my: "center center", at: "center center", of: window }
+  });
+
+
+
   var minWidth = $( "#permdialog" ).dialog( "option", "minWidth" );
 $( "#permdialog" ).dialog( "option", "minWidth", 675 );
 
   var minHeight = $( "#permdialog" ).dialog( "option", "minHeight" );
   $( "#permdialog" ).dialog( "option", "minHeight", 650 );
+
+  var position = $( "#permdialog" ).dialog( "option", "position" );
+$( ".selector" ).dialog( "option", "position", { my: "center center", at: "center center", of: window } );
+
 
 // ---- Display file structure ----
 
