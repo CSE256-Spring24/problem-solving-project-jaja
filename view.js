@@ -4,11 +4,11 @@ $("#permdialog").dialog({
     minWidth: 675
   });
   
-  $( "#permdialog" ).dialog({
+  $("#permdialog").dialog({
     minHeight: 650
   });
 
-  $( "#permdialog" ).dialog({
+  $("#permdialog").dialog({
     position: { my: "center center", at: "center center", of: window }
   });
 
