@@ -1,5 +1,26 @@
 // ---- Define your dialogs  and panels here ----
 
+let result = define_new_effective_permissions(id_prefix= "epPanel", add_info_col = true, which_permissions = null)
+$('#perm_entry_table').append(result)
+let eff_perm_result = define_new_effective_permissions(id_prefix= "epPanel-eff-perm", add_info_col = true, which_permissions = null)
+$('#adv_effective_effective_list').append(eff_perm_result)
+
+let new_dialog = define_new_dialog("newDialogue", title="Function")
+$('.perm_info').click(function(){
+   console.log('clicked!')
+   new_dialog.dialog('open')
+   console.log($('#epPanel').attr('filepath'))
+   console.log($('#epPanel').attr('username'))
+   console.log($(this).attr('permission_name'))
+
+//    my_file_obj_var = path_to_file['filepath']
+//    my_file_user_obj = all_users['username']
+
+//    let explanation = get_explanation_text()
+//    $('#newDialogue').append(explanation)
+//    $('#newDialogue').empty()
+})
+
 $("#permdialog").dialog({
     minWidth: 675
   });
