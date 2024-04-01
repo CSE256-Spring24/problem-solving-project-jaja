@@ -1,15 +1,18 @@
 // ---- Define your dialogs  and panels here ----
 
-// $(document).ready(function() {
-//     $("#ui-id-27").dialog({
-//       width: 700
-//     });
-//   });
-
-
-$("#ui-id-27").dialog({
-    width: 700
+$("#permdialog").dialog({
+    minWidth: 675
   });
+  
+  $( "#permdialog" ).dialog({
+    minHeight: 650
+  });
+
+  var minWidth = $( "#permdialog" ).dialog( "option", "minWidth" );
+$( "#permdialog" ).dialog( "option", "minWidth", 675 );
+
+  var minHeight = $( "#permdialog" ).dialog( "option", "minHeight" );
+  $( "#permdialog" ).dialog( "option", "minHeight", 650 );
 
 // ---- Display file structure ----
 
