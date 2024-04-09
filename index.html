@@ -101,19 +101,17 @@
                 <div title="Permission Entry" id="permentry">
                     <div id="perm_entry_inheritance_explanation" style="display:none" class="section">This permission is
                         inherited from the parent object. Make changes here to override the inherited permissions.</div>
-                        <div id="adv_effective_user_text">Name:</div>
-                        <div id="adv_effective_current_user_line" class="section">
-                        <input type="text" id="adv_effective_current_user" class="ui-widget-content" placeholder="student1"
-                            style="width: 50%; display: inline-block;"/>
-                    
-                    <button id="perm_entry_change_user" class="ui-button ui-widget ui-corner-all" style="display: inline-block;">Change...</button>
-                    
-                    <!-- <div id="perm_entry_owner_current_owner" class="ui-widget-content section"></div>
-                        <div id="perm_entry_owner_change_owner_text">Change owner to:</div>
-                        <div id="perm_entry_owner_user_list"></div>
-                        <button id="perm_entry_owner_change_button" class="ui-button ui-widget ui-corner-all">Change
-                            Owner</button> -->
-                    
+                        <div id="perm_entry_current_owner_text">Current user:</div>
+                        <div id="perm_entry_current_owner" class="ui-widget-content section"  style="width:200px;height:15px;display:inline-block;" ></div>
+                            
+                        <div id="perm_entry_change_owner_text">Change user to:</div>
+                        <!-- <div id="perm_entry_user_list"></div> -->
+                        <button id="perm_entry_change_user" class="ui-button ui-widget ui-corner-all">Change
+                            Owner</button>
+                    <!-- <span id="perm_entry_name_text">Name: </span>
+                     <span id="perm_entry_username" class="ui-widget-content section"
+                        style="width:200px;display:inline-block;"></span> -->
+                    <!-- <button id="perm_entry_change_user" class="ui-button ui-widget ui-corner-all">Change...</button> -->
                     <table id="perm_entry_table" class="ui-widget-content section">
                         <tr id="perm_entry_header">
                             <th id="perm_entry_header_p" width="99%">Permissions</th>
@@ -122,6 +120,9 @@
                         </tr>
                     </table>
                 </div>
+
+              
+
                 <!-- structure for the Advanced dialog: -->
                 <div title="Advanced Security Settings" id="advdialog" style="overflow:hidden">
                     <div id="advtabs">
@@ -175,19 +176,19 @@
                             <div id="adv_effective_object_name" class="section">Object Name: <span
                                     id="adv_effective_filepath"></span></div>
                             <div id="adv_effective_user_text">Group or user name:</div>
-<!-- 
+
                             <div id="adv_effective_current_user_line" class="section">
                                 <span id="adv_effective_current_user" class="ui-widget-content"
                                     style="width: 80%;display: inline-block;">&nbsp</span>
                                 <button id="adv_effective_user_select"
                                     class="ui-button ui-widget ui-corner-all">Select...</button>
-                            </div> -->
+                            </div>
 
-                        <div id="eff_owner_current_owner" class="ui-widget-content section"></div>
+                        <!-- <div id="eff_owner_current_owner" class="ui-widget-content section"></div>
                         <div id="eff_owner_change_owner_text">Change owner to:</div>
                         <div id="eff_owner_user_list"></div>
                         <button id="eff_owner_change_button" class="ui-button ui-widget ui-corner-all">Change
-                            Owner</button>
+                            Owner</button> -->
 
 
                             <div id="adv_effective_effective_text">Effective permissions:</div>
