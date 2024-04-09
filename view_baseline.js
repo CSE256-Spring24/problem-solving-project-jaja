@@ -313,7 +313,7 @@ function make_all_users_list(id_prefix, attr_set_id, height=80) {
 function open_permission_entry(file_path) {
     let file_obj = path_to_file[file_path]
 
-    $('#perm_entry_username').text('')
+    $('#perm_entry_current_owner').text('')
 
     $('.perm_entry_checkcell').empty()
 
@@ -335,8 +335,6 @@ function open_advanced_dialog(file_path) {
     $('#adv_perm_table tr:gt(0)').remove()
     $('#adv_owner_user_list').empty()
     $(`.effectivecheckcell`).empty()
-    $('#eff_owner_user_list').empty()
-    $('#perm_entry_owner_user_list').empty()
 
     if(file_obj.using_permission_inheritance) {
         $('#adv_perm_inheritance').prop('checked', true)
@@ -369,17 +367,16 @@ function open_advanced_dialog(file_path) {
     }
 
     // user list for owner tab:
-    let all_user_list = make_all_users_list('adv_owner_','adv_owner_current_owner') 
-    let effective_user_list = make_all_users_list('eff_owner_','eff_owner_current_owner')
-    let perm_entry_user_list = make_all_users_list('perm_entry_owner_','perm_entry_owner_current_owner')
+    let owner_all_user_list = make_all_users_list('adv_owner_','adv_owner_current_owner') 
+    let perm_entry_all_user_list = make_all_users_list('perm_entry_','perm_entry_current_owner') 
 
     $('#adv_owner_current_owner').text(get_user_name(file_obj.owner))
-    $('#eff_owner_current_owner').text(get_user_name(file_obj.owner))
-    $('#perm_entry_owner_current_owner').text(get_user_name(file_obj.owner))
+    $('#perm_entry_current_owner').text(get_user_name(file_obj.owner))
 
-    $('#adv_owner_user_list').append(all_user_list)
-    $('#eff_owner_user_list').append(effective_user_list)
-    $('#perm_entry_owner_user_list').append(effective_user_list)
+
+    $('#adv_owner_user_list').append(owner_all_user_list)
+    $('#perm_entry_user_list').append(perm_entry_all_user_list)
+
 
     // open dialog:
     $(`#advdialog`).dialog('open')
@@ -421,15 +418,15 @@ function open_user_select(to_populate) {
 }
 
 // set up effective permissions table in advanced -> effective dialog
-// for(let p of Object.values(permissions)) {
-//     let row = $(`
-//     <tr id="adv_effective_row_${p}">
-//         <td id="adv_effective_checkcell_${p}"class="effectivecheckcell"></td>
-//         <td id="adv_effective_name_${p}">${p}</td>
-//     </tr>
-//     `)
-//     $('#adv_effective_effective_list').append(row)
-// }
+for(let p of Object.values(permissions)) {
+    let row = $(`
+    <tr id="adv_effective_row_${p}">
+        <td id="adv_effective_checkcell_${p}"class="effectivecheckcell"></td>
+        <td id="adv_effective_name_${p}">${p}</td>
+    </tr>
+    `)
+    $('#adv_effective_effective_list').append(row)
+}
 
 // Advanced dialog
 $( "#advtabs" ).tabs({
@@ -576,28 +573,50 @@ effective_user_observer.observe(document.getElementById('adv_effective_current_u
 
 // change owner button:
 $('#adv_owner_change_button').click(function() {
-    let owner_selected_username = $('#adv_owner_current_owner').attr('username')
-    let eff_owner_selected_username = $('#eff_owner_current_owner').attr('username')
-    let perm_entry_selected_username = $('#perm_entry_owner_current_owner').attr('username')
-
+    let selected_username = $('#adv_owner_current_owner').attr('username')
     let filepath = $('#advdialog').attr('filepath')
     let file_obj = path_to_file[filepath]
-    if (owner_selected_username && (owner_selected_username.length > 0) && (owner_selected_username in all_users) ) {
-        file_obj.owner = all_users[owner_selected_username]
-        $('#adv_owner_current_owner').text(owner_selected_username)
-        emitState() // Log new state
-    }
-    if (eff_owner_selected_username && (eff_owner_selected_username.length > 0) && (eff_owner_selected_username in all_users) ) {
-        file_obj.owner = all_users[eff_owner_selected_username]
-        $('#eff_owner_current_owner').text(eff_owner_selected_username)
-        emitState() // Log new state
-    }
-    if (perm_entry_selected_username && (perm_entry_selected_username.length > 0) && (perm_entry_selected_username in all_users) ) {
-        file_obj.owner = all_users[perm_entry_selected_username]
-        $('#perm_entry_owner_current_owner').text(perm_entry_selected_username)
+    if (selected_username && (selected_username.length > 0) && (selected_username in all_users) ) {
+        file_obj.owner = all_users[selected_username]
+        $('#adv_owner_current_owner').text(selected_username)
         emitState() // Log new state
     }
 })
+
+// change perm_entry owner button:
+$('#perm_entry_change_button').click(function() {
+    let selected_username = $('#perm_entry_current_owner').attr('username')
+    let filepath = $('#advdialog').attr('filepath')
+    let file_obj = path_to_file[filepath]
+    if (selected_username && (selected_username.length > 0) && (selected_username in all_users) ) {
+        file_obj.owner = all_users[selected_username]
+        $('#perm_entry_current_owner').text(selected_username)
+        emitState() // Log new state
+    }
+})
+// $('#adv_owner_change_button').click(function() {
+//     let owner_selected_username = $('#adv_owner_current_owner').attr('username')
+//     let eff_owner_selected_username = $('#eff_owner_current_owner').attr('username')
+//     let perm_entry_selected_username = $('#perm_entry_owner_current_owner').attr('username')
+
+//     let filepath = $('#advdialog').attr('filepath')
+//     let file_obj = path_to_file[filepath]
+//     if (owner_selected_username && (owner_selected_username.length > 0) && (owner_selected_username in all_users) ) {
+//         file_obj.owner = all_users[owner_selected_username]
+//         $('#adv_owner_current_owner').text(owner_selected_username)
+//         emitState() // Log new state
+//     }
+//     // if (eff_owner_selected_username && (eff_owner_selected_username.length > 0) && (eff_owner_selected_username in all_users) ) {
+//     //     file_obj.owner = all_users[eff_owner_selected_username]
+//     //     $('#eff_owner_current_owner').text(eff_owner_selected_username)
+//     //     emitState() // Log new state
+//     // }
+//     // if (perm_entry_selected_username && (perm_entry_selected_username.length > 0) && (perm_entry_selected_username in all_users) ) {
+//     //     file_obj.owner = all_users[perm_entry_selected_username]
+//     //     $('#perm_entry_owner_current_owner').text(perm_entry_selected_username)
+//     //     emitState() // Log new state
+//     // }
+// })
 
 // User dialog 
 let user_select_contents = $("#user_select_dialog").dialog({
@@ -652,30 +671,17 @@ let perm_entry_dialog = $('#permentry').dialog({
     }
 })
 
-// for(let p of Object.values(permissions)){
-//     let row = $(`<tr id="perm_entry_row_${p}">
-//         <td id="perm_entry_row_${p}_cell">${p}</td>
+for(let p of Object.values(permissions)){
+    let row = $(`<tr id="perm_entry_row_${p}">
+        <td id="perm_entry_row_${p}_cell">${p}</td>
         
-//     </tr>`)
-//     for(let ace_type of ['allow', 'deny']) {
-//         row.append(`<td id="perm_entry_row_${p}_${ace_type}" class="perm_entry_checkcell" perm="${p}" type="${ace_type}"></td>`);
-//     }
-//     $('#perm_entry_table').append(row)
-// }  
-// for (let p of Object.values(permissions)) {
-//     let row = $(`<tr id="perm_entry_row_${p}">
-//         <td id="perm_entry_row_${p}_cell">${p}</td>
-//     </tr>`)
-//     for (let ace_type of ['allow', 'deny']) {
-//         row.append(`
-        
-//             <td id="perm_entry_row_${p}_${ace_type}" class="perm_entry_checkcell" perm="${p}" type="${ace_type}">
-//                 <span class="info-icon" title="Information"></span> <!-- Information icon -->
-//                 // <span id="perm_entry_row_${p}_${ace_type}_info_icon" class="fa fa-info-circle perm_info" perm="${p}" setting_container_id="${id_prefix}"/>
-//             </td>`)
-//     }
-//     $('#perm_entry_table').append(row)
-// }
+    </tr>`)
+    for(let ace_type of ['allow', 'deny']) {
+        row.append(`<td id="perm_entry_row_${p}_${ace_type}" class="perm_entry_checkcell" perm="${p}" type="${ace_type}"></td>`);
+    }
+    $('#perm_entry_table').append(row)
+}  
+
 
 $('#adv_perm_edit').click(function(){
     let filepath = $('#advdialog').attr('filepath')
@@ -683,7 +689,8 @@ $('#adv_perm_edit').click(function(){
 })
 
 $('#perm_entry_change_user').click(function(){
-    open_user_select('perm_entry_username') 
+    open_user_select('perm_entry_current_owner') 
+    // $('input:text').attr('placeholder',$('#perm_entry_current_owner').attr('selected_user'));
 
 })
 
@@ -705,7 +712,7 @@ perm_entry_user_observer = new MutationObserver(function(mutationsList, observer
                     $(this).append(checkbox)
                 })
 
-                let all_perms = get_total_permissions(file_obj,$('#perm_entry_username').attr('selected_user'))
+                let all_perms = get_total_permissions(file_obj,$('#perm_entry_current_owner').attr('selected_user'))
                 for(let ace_type in all_perms) {
                     for(let p in all_perms[ace_type]) {
                         let checkbox = $(document.getElementById(`perm_entry_row_${p}_${ace_type}_checkbox`))
@@ -718,7 +725,7 @@ perm_entry_user_observer = new MutationObserver(function(mutationsList, observer
                 }
 
                 $('.perm_entry_checkbox').change(function(){
-                    let username =  $('#perm_entry_username').attr('selected_user')
+                    let username =  $('#perm_entry_current_owner').attr('selected_user')
                     let filepath =  $(`#advdialog`).attr('filepath')
                     toggle_permission(filepath, username, $(this).parent().attr('perm'), $(this).parent().attr('type'), $(this).prop('checked'))
                 })
@@ -727,7 +734,7 @@ perm_entry_user_observer = new MutationObserver(function(mutationsList, observer
     }
 })
 
-perm_entry_user_observer.observe(document.getElementById('perm_entry_username'), {attributes: true})
+perm_entry_user_observer.observe(document.getElementById('perm_entry_current_owner'), {attributes: true})
 
 
 
