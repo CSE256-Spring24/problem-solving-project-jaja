@@ -328,6 +328,7 @@ function define_permission_checkboxes(id_prefix, which_permissions = null){
             row.append(`<td id="${id_prefix}_${p_id}_${ace_type}_cell">
                 <input type="checkbox" id="${id_prefix}_${p_id}_${ace_type}_checkbox" ptype="${ace_type}" class="perm_checkbox" permission="${p}" ></input>
             </td>`)
+            
         }
         perm_table.append(row)
     }
