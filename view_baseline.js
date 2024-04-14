@@ -369,13 +369,16 @@ function open_advanced_dialog(file_path) {
     // user list for owner tab:
     let owner_all_user_list = make_all_users_list('adv_owner_','adv_owner_current_owner') 
     let perm_entry_all_user_list = make_all_users_list('perm_entry_','perm_entry_current_owner') 
+    let eff_all_user_list = make_all_users_list('padv_effective_','adv_effective_current_user') 
 
     $('#adv_owner_current_owner').text(get_user_name(file_obj.owner))
     $('#perm_entry_current_owner').text(get_user_name(file_obj.owner))
+    $('#adv_effective_current_user').text(get_user_name(file_obj.owner))
 
 
     $('#adv_owner_user_list').append(owner_all_user_list)
     $('#perm_entry_user_list').append(perm_entry_all_user_list)
+    $('#adv_effective_user_list').append(eff_all_user_list)
 
 
     // open dialog:
@@ -386,6 +389,7 @@ function open_advanced_dialog(file_path) {
 function update_effective_user() {
     $('.effectivecheckcell').empty()
     let selected_username = $('#adv_effective_current_user').attr('selected_user')
+
 
     // if a user is actually selected (and is in the user list):
     if(selected_username && (selected_username.length > 0) && (selected_username in all_users) ) {
@@ -405,6 +409,26 @@ function update_effective_user() {
     }
     
 }
+
+// for(let p of Object.values(permissions)){
+//     let row = $(`<tr id="perm_entry_row_${p}">
+//         <td id="perm_entry_row_${p}_cell">${p}</td>
+        
+//     </tr>`)
+//     for(let ace_type of ['allow', 'deny']) {
+//         row.append(`<td id="perm_entry_row_${p}_${ace_type}" class="perm_entry_checkcell" perm="${p}" type="${ace_type}"></td>`);
+//     }
+//     let id_prefix = 'some_prefix'; // Example: Define id_prefix if not already defined
+//     let p_id = 'some_id'; // Example: Define p_id if not already defined
+
+//     let infoCell = $(`
+//         <td id="${id_prefix}_${p_id}_info_cell" width="32px" style="text-align:right">
+//             <span id="${id_prefix}_${p_id}_info_icon" class="fa fa-info-circle perm_info" permission_name="${p}" setting_container_id="${id_prefix}"></span>
+//         </td>`);
+
+//     row.append(infoCell);
+//     $('#perm_entry_table').append(row)
+// }  
 
 // TODO: redo everything to use the new user_select_dialog
 function open_user_select(to_populate) {
@@ -452,7 +476,7 @@ let adv_contents = $(`#advdialog`).dialog({
 // generate ID for each HTML element making up the dialog:
 
 // open user select dialog on "select" button press:
-$("#adv_effective_user_select").click(function(event){
+$("#adv_effective_change_button").click(function(event){
     open_user_select("adv_effective_current_user") // Update element with id=adv_effective_current_user once user is selected.
 })
 
@@ -594,29 +618,19 @@ $('#perm_entry_change_button').click(function() {
         emitState() // Log new state
     }
 })
-// $('#adv_owner_change_button').click(function() {
-//     let owner_selected_username = $('#adv_owner_current_owner').attr('username')
-//     let eff_owner_selected_username = $('#eff_owner_current_owner').attr('username')
-//     let perm_entry_selected_username = $('#perm_entry_owner_current_owner').attr('username')
+$('#adv_effective_change_button').click(function() {
+    let selected_username = $('#adv_effective_current_user').attr('username')
+    let filepath = $('#advdialog').attr('filepath')
+    let file_obj = path_to_file[filepath]
+    if (selected_username && (selected_username.length > 0) && (selected_username in all_users) ) {
+        file_obj.owner = all_users[selected_username]
+        $('#adv_effective_current_user').text(selected_username)
+        emitState() // Log new state
+    }
+    
+})
 
-//     let filepath = $('#advdialog').attr('filepath')
-//     let file_obj = path_to_file[filepath]
-//     if (owner_selected_username && (owner_selected_username.length > 0) && (owner_selected_username in all_users) ) {
-//         file_obj.owner = all_users[owner_selected_username]
-//         $('#adv_owner_current_owner').text(owner_selected_username)
-//         emitState() // Log new state
-//     }
-//     // if (eff_owner_selected_username && (eff_owner_selected_username.length > 0) && (eff_owner_selected_username in all_users) ) {
-//     //     file_obj.owner = all_users[eff_owner_selected_username]
-//     //     $('#eff_owner_current_owner').text(eff_owner_selected_username)
-//     //     emitState() // Log new state
-//     // }
-//     // if (perm_entry_selected_username && (perm_entry_selected_username.length > 0) && (perm_entry_selected_username in all_users) ) {
-//     //     file_obj.owner = all_users[perm_entry_selected_username]
-//     //     $('#perm_entry_owner_current_owner').text(perm_entry_selected_username)
-//     //     emitState() // Log new state
-//     // }
-// })
+
 
 // User dialog 
 let user_select_contents = $("#user_select_dialog").dialog({
@@ -679,6 +693,15 @@ for(let p of Object.values(permissions)){
     for(let ace_type of ['allow', 'deny']) {
         row.append(`<td id="perm_entry_row_${p}_${ace_type}" class="perm_entry_checkcell" perm="${p}" type="${ace_type}"></td>`);
     }
+    let id_prefix = 'some_prefix'; // Example: Define id_prefix if not already defined
+    let p_id = 'some_id'; // Example: Define p_id if not already defined
+
+    let infoCell = $(`
+        <td id="${id_prefix}_${p_id}_info_cell" width="32px" style="text-align:right">
+            <span id="${id_prefix}_${p_id}_info_icon" class="fa fa-info-circle perm_info" permission_name="${p}" setting_container_id="${id_prefix}"></span>
+        </td>`);
+
+    row.append(infoCell);
     $('#perm_entry_table').append(row)
 }  
 

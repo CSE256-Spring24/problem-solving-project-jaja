@@ -1,25 +1,56 @@
 // ---- Define your dialogs  and panels here ----
 
-// let result = define_new_effective_permissions(id_prefix= "epPanel", add_info_col = true, which_permissions = null)
-// $('#perm_entry_table').append(result)
 // let eff_perm_result = define_new_effective_permissions(id_prefix= "epPanel-eff-perm", add_info_col = true, which_permissions = null)
 // $('#adv_effective_effective_list').append(eff_perm_result)
+$('#perm_entry_table').attr('filepath', '/C')
+$('#perm_entry_table').attr('username', 'administrator')
 
-// let new_dialog = define_new_dialog("newDialogue", title="Function")
-// $('.perm_info').click(function(){
-//    console.log('clicked!')
-//    new_dialog.dialog('open')
-//    console.log($('#epPanel').attr('filepath'))
-//    console.log($('#epPanel').attr('username'))
-//    console.log($(this).attr('permission_name'))
 
-//    my_file_obj_var = path_to_file['filepath']
-//    my_file_user_obj = all_users['username']
+let new_dialog = define_new_dialog("newDialogue", title="Function")
+$('.perm_info').click(function(){
+   console.log('clicked!')
+   new_dialog.dialog('open')
+   let filepath = $('#perm_entry_table').attr('filepath');
+   let username = $('#perm_entry_table').attr('username');
+   let permission_to_check = $(this).attr('permission_name');
+   // Get file object from path_to_file
+   let file = path_to_file[filepath];
+   // Get user object from all_users
+   let user = all_users[username];
+   // Call allow_user_action function
+   let allowResult = allow_user_action(file, user, permission_to_check, false);
+   let explanationText = get_explanation_text(allowResult);
+   // Update dialog content with explanation text
+   $('#newDialogue').html(explanationText);
+   // Open the dialog
+   new_dialog.dialog('open');
+})
 
-//    let explanation = get_explanation_text()
-//    $('#newDialogue').append(explanation)
-//    $('#newDialogue').empty()
-// })
+$('#adv_effective_effective_list').attr('filepath', '/C')
+$('#adv_effective_effective_list').attr('username', 'administrator')
+
+
+let eff_perm_new_dialog = define_new_dialog("eff_perm_newDialogue", title="Function")
+$('.perm_info').click(function(){
+   console.log('clicked!')
+   new_dialog.dialog('open')
+   let filepath = $('#adv_effective_effective_list').attr('filepath');
+   let username = $('#adv_effective_effective_list').attr('username');
+   let permission_to_check = $(this).attr('permission_name');
+   // Get file object from path_to_file
+   let file = path_to_file[filepath];
+   // Get user object from all_users
+   let user = all_users[username];
+   // Call allow_user_action function
+   let allowResult = allow_user_action(file, user, permission_to_check, false);
+   let explanationText = get_explanation_text(allowResult);
+   // Update dialog content with explanation text
+   $('#eff_perm_newDialogue').html(explanationText);
+   // Open the dialog
+   new_dialog.dialog('open');
+
+})
+
 
 $("#permdialog").dialog({
     minWidth: 675
