@@ -230,7 +230,7 @@ let are_you_sure_dialog = define_new_dialog('are_you_sure_dialog', "Are you sure
     }
 })
 // Add text to the dialog:
-are_you_sure_dialog.html('Are you sure you want to remove this user?<br><br><b>You will not be able to edit their permissions after removal.</b>');
+are_you_sure_dialog.html('Are you sure you want to remove this user\'s permissions?<br><br>By removing these permissions, you wil also be removing it for all existing children items. (ex., File1.txt, File2.txt, etc.)<br><br><b>You will not be able to edit their permissions after removal.</b>');
 
 // Make actual "remove" button:
 perm_remove_user_button  = $('<button id="perm_remove_user" class="ui-button ui-widget ui-corner-all">Remove user</button>')
