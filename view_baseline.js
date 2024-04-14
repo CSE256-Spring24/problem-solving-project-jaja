@@ -449,8 +449,20 @@ for(let p of Object.values(permissions)) {
         <td id="adv_effective_name_${p}">${p}</td>
     </tr>
     `)
+
+    let id_prefix = 'some_prefix'; // Example: Define id_prefix if not already defined
+    let p_id = 'some_id'; // Example: Define p_id if not already defined
+
+    let infoCell = $(`
+        <td id="${id_prefix}_${p_id}_info_cell" width="32px" style="text-align:right">
+            <span id="${id_prefix}_${p_id}_info_icon" class="fa fa-info-circle perm_info" permission_name="${p}" setting_container_id="${id_prefix}"></span>
+        </td>`);
+
+    row.append(infoCell);
+
     $('#adv_effective_effective_list').append(row)
 }
+
 
 // Advanced dialog
 $( "#advtabs" ).tabs({
