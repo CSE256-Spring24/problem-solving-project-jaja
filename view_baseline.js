@@ -16,7 +16,7 @@ perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
             click: function() {
                 open_advanced_dialog(perm_dialog.attr('filepath'));
             },
-            style: " top: -81px; right: -67px;  font-size: 0.9em; background-color: #027ffe; border : 1px solid #027ffe;color: white; " 
+            style: " font-size: 0.9em; background-color: #027ffe; border : 1px solid #027ffe;color: white; " 
        
         }
         ,
@@ -30,14 +30,22 @@ perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
         }
     ]
 });
+perm_dialog.parent().find('.ui-dialog-buttonset').prepend('<span class="button-text">For special permissions or advanced settings, click Advanced.</span>');
+
+// CSS to style the added text
+$('.button-text').css({
+    'font-weight':'700',
+    'float': 'left',
+    'font-size': '12px',
+    'margin-right': '118px',
+    'margin-top': '16px'
+});
 
 
 // Make the initial "Object Name:" text:
 // If you pass in valid HTML to $(), it will *create* elements instead of selecting them. (You still have to append them, though)
 obj_name_div = $('<div id="permdialog_objname" class="section">Object Path: <span id="permdialog_objname_namespan"></span> </div>')
-
-//Make the div with the explanation about special permissions/advanced settings:
-advanced_expl_div = $('<div id="permdialog_advanced_explantion_text" style="font-size: 12px;">For special permissions or advanced settings, click Advanced.</div>');
+inherited_div = $('<div id="inherited_text" style="font-size: 12px;margin-top: -17px;">Need to edit the grayed out boxes? Try navigating to the Parent Folder and change permissions there.</div>');
 
 // Make the (grouped) permission checkboxes table:
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')
@@ -222,7 +230,7 @@ let are_you_sure_dialog = define_new_dialog('are_you_sure_dialog', "Are you sure
     }
 })
 // Add text to the dialog:
-are_you_sure_dialog.text('Do you want to remove permissions for this user?')
+are_you_sure_dialog.html('Are you sure you want to remove this user?<br><br><b>You will not be able to edit their permissions after removal.</b>');
 
 // Make actual "remove" button:
 perm_remove_user_button  = $('<button id="perm_remove_user" class="ui-button ui-widget ui-corner-all">Remove user</button>')
@@ -256,7 +264,8 @@ perm_dialog.append(file_permission_users)
 perm_dialog.append(perm_add_user_select)
 perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - add the remove button the the 'add user select' div, just so it shows up on the same line.
 perm_dialog.append(grouped_permissions)
-perm_dialog.append(advanced_expl_div)
+perm_dialog.append(inherited_div)
+
 
 // --- Additional logic for reloading contents when needed: ---
 //Define an observer which will propagate perm_dialog's filepath attribute to all the relevant elements, whenever it changes:

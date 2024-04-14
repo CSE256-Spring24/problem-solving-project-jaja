@@ -213,8 +213,8 @@ function define_grouped_permission_checkboxes(id_prefix, which_groups = null) {
         <tr id="${id_prefix}_header"  style="background-color: #eee; position: absolute; top: -25%;  left:-1px; padding:1.1%;">
             <th id="${id_prefix}_header_p" width="200%" style="text-align: left; font-weight: 600; font-size: 15px;">Permissions for <span id="${id_prefix}_header_username"></span>
             </th>
-            <th id="${id_prefix}_header_allow" style="font-size: 12px; font-weight: 300;position: relative;left: -5%;">Allow</th>
-            <th id="${id_prefix}_header_deny" style="font-size: 12px; font-weight: 300;position: relative;left: -4%;">Deny</th>
+            <th id="${id_prefix}_header_allow" style="font-size: 12px; font-weight: 300;position: relative;left: -8%;">Allow</th>
+            <th id="${id_prefix}_header_deny" style="font-size: 12px; font-weight: 300;position: relative;left: -5%;">Deny</th>
         </tr>
     </table>
 `);
