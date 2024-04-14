@@ -61,7 +61,9 @@ file_permission_users.css({
    
     "border": "1px solid #eee",
     'padding':'1%',
-    "margin-bottom": "10px" 
+    "margin-bottom": "10px",
+    'max-height': '75px',
+    'overflow-y': 'auto'
     
 })
 
