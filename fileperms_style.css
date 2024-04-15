@@ -67,10 +67,19 @@
     border: 1px solid #003eff;
 }
 
-.legend {
-    width: 25%;
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    flex-direction: row;
     margin-top: 4%;
     margin-left: 25%;
+    margin-right: 25%;
+    /* padding: 5%; */
+}
+
+.legend {
+    width: 20%;
     color: #333333;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 1em;
@@ -78,12 +87,33 @@
 
 .legend #top {
     background-color: rgb(238, 238, 238);
-    padding: 3%;
+    padding: 5%;
     border: 1px solid #dddddd;
 
 }
 
 .legend #contents {
+    padding: 5%;
+    line-height: 1.5em;
+    border: 1px solid #dddddd;
+
+}
+
+.help {
+    width: 75%;
+    color: #333333;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 1em;
+}
+
+.help #top {
+    background-color: rgb(238, 238, 238);
+    padding: 1.5%;
+    border: 1px solid #dddddd;
+
+}
+
+.help #contents {
     padding: 3%;
     line-height: 1.5em;
     border: 1px solid #dddddd;
