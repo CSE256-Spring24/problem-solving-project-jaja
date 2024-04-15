@@ -6,7 +6,7 @@ $('#perm_entry_table').attr('filepath', '/C')
 $('#perm_entry_table').attr('username', 'administrator')
 
 
-let new_dialog = define_new_dialog("newDialogue", title="Function")
+let new_dialog = define_new_dialog("newDialogue", title="Permission Information")
 $('.perm_info').click(function(){
    console.log('clicked!')
    new_dialog.dialog('open')
@@ -30,7 +30,7 @@ $('#adv_effective_effective_list').attr('filepath', '/C')
 $('#adv_effective_effective_list').attr('username', 'administrator')
 
 
-let eff_perm_new_dialog = define_new_dialog("eff_perm_newDialogue", title="Function")
+let eff_perm_new_dialog = define_new_dialog("eff_perm_newDialogue", title="Permission Information")
 $('.perm_info').click(function(){
    console.log('clicked!')
    new_dialog.dialog('open')
