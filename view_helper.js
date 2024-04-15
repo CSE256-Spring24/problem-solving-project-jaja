@@ -515,10 +515,10 @@ function define_new_user_select_field(id_prefix, select_button_text, on_user_cha
 // Get a (very simple) text representation of a permissions explanation
 function get_explanation_text(explanation) {
     return `
-    Action allowed?: ${explanation.is_allowed}; 
+    Action allowed?: ${explanation.is_allowed}; <br>
     Because of
-    permission set for file: ${explanation.file_responsible?get_full_path(explanation.file_responsible):'N/A'}
-    and for user: ${ explanation.ace_responsible ? get_user_name(explanation.ace_responsible.who) : 'N/A' }
+    permission set for file: ${explanation.file_responsible?get_full_path(explanation.file_responsible):'N/A'} <br>
+    and for user: ${ explanation.ace_responsible ? get_user_name(explanation.ace_responsible.who) : 'N/A' } <br>
     ${ explanation.text_explanation ? `(${explanation.text_explanation})`  : '' }
     `
 }
