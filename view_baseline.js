@@ -59,8 +59,8 @@ file_permission_users = define_single_select_list('permdialog_file_user_list', f
 //This is the top section of the permissions box
 file_permission_users.css({
    
-    "border": "1px solid #eee",
-    'padding':'1%',
+    "border": "1px solid rgb(173 173 173)",
+    'padding-bottom':'11%',
     "margin-bottom": "10px" 
     
 })
