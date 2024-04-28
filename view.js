@@ -146,3 +146,7 @@ $('.permbutton').click( function( e ) {
 
 // ---- Assign unique ids to everything that doesn't have an ID ----
 $('#html-loc').find('*').uniqueId() 
+
+
+document.getElementById("filestructure").style.width = "86%" 
+document.getElementById("sidepanel").style.width = "86%" 
