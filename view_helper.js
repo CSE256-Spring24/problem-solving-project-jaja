@@ -211,10 +211,10 @@ function define_grouped_permission_checkboxes(id_prefix, which_groups = null) {
     let group_table = $(`
     <table id="${id_prefix}" class="ui-widget-content" width="100%" style="position: relative;margin-bottom: 5%;padding-left:3%;padding-right:3%;">
         <tr id="${id_prefix}_header"  style="background-color: #eee; position: absolute; top: -25%;  left:-1px; padding:1.1%;">
-            <th id="${id_prefix}_header_p" width="200%" style="text-align: left; font-weight: 600; font-size: 15px;">Permissions for <span id="${id_prefix}_header_username"></span>
+            <th id="${id_prefix}_header_p" width="620px" style="text-align: left; font-weight: 600; font-size: 15px;">Permissions for <span id="${id_prefix}_header_username"></span>
             </th>
-            <th id="${id_prefix}_header_allow" style="font-size: 12px; font-weight: 300;position: relative;left: -8%;">Allow</th>
-            <th id="${id_prefix}_header_deny" style="font-size: 12px; font-weight: 300;position: relative;left: -5%;">Deny</th>
+            <th id="${id_prefix}_header_allow" style="font-size: 12px; font-weight: 300;position: absolute;left: 500px; top: 20%;">Allow</th>
+            <th id="${id_prefix}_header_deny" style="font-size: 12px; font-weight: 300;position: absolute;left: 550px; top: 20%;">Deny</th>
         </tr>
     </table>
 `);
