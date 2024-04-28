@@ -45,7 +45,7 @@ $('.button-text').css({
 // Make the initial "Object Name:" text:
 // If you pass in valid HTML to $(), it will *create* elements instead of selecting them. (You still have to append them, though)
 obj_name_div = $('<div id="permdialog_objname" class="section">Object Path: <span id="permdialog_objname_namespan"></span> </div>')
-inherited_div = $('<div id="inherited_text" style="font-size: 12px;margin-top: -17px;">Need to edit the grayed out boxes? Try navigating to the Parent Folder and change permissions there.</div>');
+inherited_div = $('<div id="inherited_text" style="font-size: 12px;margin-top: -17px;"><strong>Need to edit the grayed out boxes?</strong> Try navigating to the Parent Folder and change permissions there.</div>');
 
 // Make the (grouped) permission checkboxes table:
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')

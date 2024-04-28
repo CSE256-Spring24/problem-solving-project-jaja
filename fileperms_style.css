@@ -120,6 +120,27 @@
 
 }
 
+.group_div {
+    width: 75%;
+    color: #333333;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 1em;
+}
+
+.group_div #top {
+    background-color: rgb(238, 238, 238);
+    padding: 1.5%;
+    border: 1px solid #dddddd;
+
+}
+
+.group_div #contents {
+    padding: 3%;
+    line-height: 1.5em;
+    border: 1px solid #dddddd;
+
+}
+
 #permdialog_grouped_permissions {
     line-height: 1.3em;
     padding: 5px;
