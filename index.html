@@ -82,16 +82,32 @@
                 </span>
             </span>
         </div>
-        <div class="legend">
-            <div id="top">Legend</div>
-            <div id="contents">
-                <span class="oi oi-folder" id="/C_icon"></span><span> Folder</span> <br>
-                <span class="oi oi-file" id="/C/presentation_documents/important_file.txt_icon"></span> <span> File</span> <br>
-                <span id="permdialog_file_user_employee1_icon" class="oi oi-person"></span> <span> User</span> <br>
-                <span id="permdialog_file_user_employees_icon" class="oi oi-people ui-selectee"></span> <span> Group</span> <br>
-                <span class="oi oi-lock-unlocked" id="/C/presentation_documents_permicon"></span> <span> Permissions</span> <br>
+        <section class="top-section">
+            <div class="legend">
+                <div id="top">Legend</div>
+                <div id="contents">
+                    <span class="oi oi-folder" id="/C_icon"></span><span> Folder</span> <br>
+                    <span class="oi oi-file" id="/C/presentation_documents/important_file.txt_icon"></span> <span> File</span> <br>
+                    <span id="permdialog_file_user_employee1_icon" class="oi oi-person"></span> <span> User</span> <br>
+                    <span id="permdialog_file_user_employees_icon" class="oi oi-people ui-selectee"></span> <span> Group</span> <br>
+                    <span class="oi oi-lock-unlocked" id="/C/presentation_documents_permicon"></span> <span> Permissions</span> <br>
+                </div>
             </div>
-        </div>
+            <div class="help">
+                <div id="top">Help</div>
+                <div id="contents">
+                    <p><strong>Inheritance:</strong> Files and folders can inherit permissions from their parent folders. To change inherited permissions, change the permissions of the parent folder to affect the target folder.</p>
+                    <p><strong>Precedence:</strong> In a case of conflicting permissions, direct permissions take precedence over inherited permissions, permissions closer to the target file take precedence over permissions in further files, and "deny" permissions override "allow" permissions at the same level.</p>
+                </div>
+            </div>
+            <div class="group_div">
+                <div id="top">Groups</div>
+                <div id="contents">
+                    <p>All students including the user, <strong>teaching_assistant</strong>, are members of the group <strong>students</strong>.</p>
+                    <p>All employees (i.e. employee1, employee2, etc.) are members of the group <strong>employees</strong>.</p>
+                </div>
+            </div>
+        </section>
         <div id="wrapper">
             <div data-app="gender-mag" data-mode="tracker" id="html-loc" data-tag="">
                 <!-- div where file and folder structure will be generated:-->
